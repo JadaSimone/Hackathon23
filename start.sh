@@ -2,8 +2,6 @@
 
 compute=$(jq .compute api_input.json | tr -d "\"")
 requirements=$(jq .requirements[] api_input.json | tr -d "\"")
-state_store=$(jq .state_store api_input.json)
-state_message=$(jq .state_message api_input.json)
 s3_state=$(jq .state_store.location api_input.json | tr -d "\"")
 
 # install the requirements
@@ -22,5 +20,6 @@ if [ -f "state.txt" ]; then
     current_state=$(<state.txt)
     # start the processes where we left off
     python compute.py $current_state
+else
+    python compute.py
 fi
-python compute.py
