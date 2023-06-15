@@ -10,5 +10,5 @@ def count_values(startVal=0, maxVal=10, sleepTimer=1):
         time.sleep(sleepTimer)
 
 if __name__ == '__main__':
-    args = int(sys.argv[1:])
+    args = [int(arg) for arg in sys.argv[1:]]
     count_values(*args)
