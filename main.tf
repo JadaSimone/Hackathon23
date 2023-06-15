@@ -20,35 +20,35 @@ resource "aws_instance" "ec2_instance" {
     }
 } 
 
-
-
-resource "aws_internet_gateway" "some_ig" {
-  vpc_id = "vpc-0532566621291c7b6"
-
-  tags = {
-    Name = "Some Internet Gateway"
+data "aws_iam_policy_document" "lambda_assume_role_policy"{
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
   }
 }
 
-resource "aws_route_table" "public_rt" {
-  vpc_id = "vpc-0532566621291c7b6"
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.some_ig.id
-  }
-
-  route {
-    ipv6_cidr_block = "::/0"
-    gateway_id      = aws_internet_gateway.some_ig.id
-  }
-
-  tags = {
-    Name = "Public Route Table"
-  }
+resource "aws_iam_role" "lambda_role" {  
+  name = "lambda-lambdaRole-waf"  
+  assume_role_policy = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-resource "aws_route_table_association" "public_1_rt_a" {
-  subnet_id      = "subnet-08bab56434ab9f549"
-  route_table_id = aws_route_table.public_rt.id
+data "archive_file" "python_lambda_package" {  
+  type = "zip"  
+  source_file = "${path.module}/lambda_function.py" 
+  output_path = "nametest.zip"
 }
+
+# resource "aws_lambda_function" "test_lambda_function" {
+#         function_name = "lambdaTest"
+#         filename      = "nametest.zip"
+#         source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
+#         # role          = "arn:aws:iam::914058368716:role/service-role/x_on_the_spot_retry-role-5q3wucrg"
+#         role = aws_iam_role.lambda_role.arn
+#         runtime       = "python3.10"
+#         handler       = "lambda_function.lambda_handler"
+#         timeout       = 10
+# }
