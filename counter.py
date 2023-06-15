@@ -1,6 +1,7 @@
 import time
+import sys
 
-def count_values (startVal=0, maxVal=10, sleepTimer=1):
+def count_values(startVal=0, maxVal=10, sleepTimer=1):
     for i in range(startVal, maxVal):
         print(i)
         file = open("../spot_state.txt", "w")
@@ -8,7 +9,6 @@ def count_values (startVal=0, maxVal=10, sleepTimer=1):
         file.close()
         time.sleep(sleepTimer)
 
-count_values(3, 10, 1)
-file = open("../spot_state.txt", "r")
-print()
-print(file.read())
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    count_values(*args)
