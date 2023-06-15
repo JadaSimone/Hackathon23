@@ -2,7 +2,7 @@
 	"compute": "https://github.com/JadaSimone/Hackathon23/blob/main/counter.py",
 	"requirements": ["python"],
 	"state_store": {
-					"name": "x-on-the-spot",
+					"location": "s3://x-on-the-spot",
 					"type":  "s3"
 					},
 	"state_message":"https://github.com/JadaSimone/Hackathon23/blob/main/state_evaluation.py"
