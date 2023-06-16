@@ -14,4 +14,4 @@ chmod +x /opt/hackathon/stop.sh
 input_file=https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/examples/counter/input.json # TODO : pass this in from terraform. don't hard code
 curl --url $input_file > input.json
 
-/opt/hackathon/ec2_scripts/start.sh
+/opt/hackathon/start.sh
