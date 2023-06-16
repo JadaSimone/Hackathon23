@@ -18,7 +18,7 @@ aws s3 cp $s3_state state.txt
 if [ -f "state.txt" ]; then
     current_state=$(<state.txt)
     # start the processes where we left off
-    python compute.py $current_state
+    python3 compute.py $current_state
 else
-    python compute.py
+    python3 compute.py
 fi
