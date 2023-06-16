@@ -35,6 +35,8 @@ resource "aws_instance" "ec2_instance" {
             
             . /opt/hackathon/env.sh
             svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
+            chmod +x /opt/hackathon/ec2_scripts/start.sh
+            chmod +x /opt/hackathon/ec2_scripts/stop.sh
             /opt/hackathon/ec2_scripts/start.sh
     	EOF
 } 
