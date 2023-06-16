@@ -53,17 +53,17 @@ resource "aws_iam_role" "lambda_role" {
 
 data "archive_file" "python_lambda_package" {  
   type = "zip"  
-  source_file = "${path.module}/lambda_function.py" 
+  source_file = "${path.module}/lambdas/stop_compute_lambda.py" 
   output_path = "nametest.zip"
 }
 
 # resource "aws_lambda_function" "test_lambda_function" {
-#         function_name = "lambdaTest"
-#         filename      = "nametest.zip"
+#         function_name    = "stop_compute_lambda_terra"
+#         filename         = "nametest.zip"
 #         source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
-#         # role          = "arn:aws:iam::914058368716:role/service-role/x_on_the_spot_retry-role-5q3wucrg"
-#         role = aws_iam_role.lambda_role.arn
-#         runtime       = "python3.10"
-#         handler       = "lambda_function.lambda_handler"
-#         timeout       = 10
+#         # role           = "arn:aws:iam::914058368716:role/service-role/x_on_the_spot_retry-role-5q3wucrg"
+#         role             = aws_iam_role.lambda_role.arn
+#         runtime          = "python3.10"
+#         handler          = "lambda_function.lambda_handler"
+#         timeout          = 30
 # }
