@@ -5,21 +5,21 @@ provider "aws" {
 }
 
 # ec2 instance
-resource "aws_instance" "ec2_instance" {
-    ami = "${var.ami_id}"
-    count = "${var.number_of_instances}"
-    subnet_id = "${var.subnet_id}"
-    instance_type = "${var.instance_type}"
-    key_name = "${var.ami_key_pair_name}"
-    iam_instance_profile = "${var.iam_role}"
-    associate_public_ip_address = true
-    vpc_security_group_ids = ["sg-08bf3b80aeb1612be"]
-    user_data = filebase64("${path.module}/userdata.sh")
-    tags = {
+#resource "aws_instance" "ec2_instance" {
+#    ami = "${var.ami_id}"
+#    count = "${var.number_of_instances}"
+#    subnet_id = "${var.subnet_id}"
+#    instance_type = "${var.instance_type}"
+#    key_name = "${var.ami_key_pair_name}"
+#    iam_instance_profile = "${var.iam_role}"
+#    associate_public_ip_address = true
+#    vpc_security_group_ids = ["sg-08bf3b80aeb1612be"]
+#    user_data = filebase64("${path.module}/userdata.sh")
+#    tags = {
+#        "Name": "terraform ec2 test"
+#    }
+#}
 
-        "Name": "terraform ec2 test"
-    }
-} 
 # asg
 
 resource "aws_launch_configuration" "x_on_the_spot_template" {
