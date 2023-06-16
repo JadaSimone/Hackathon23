@@ -11,14 +11,14 @@ do
 done
 
 # install what we need to compute
-curl --url $compute > compute.py
+curl --url $compute > ../compute.py
 
 # check the current state
 aws s3 cp $s3_state state.txt
 if [ -f "state.txt" ]; then
     current_state=$(<state.txt)
     # start the processes where we left off
-    python compute.py $current_state
+    python ../compute.py $current_state
 else
-    python compute.py
+    python ../compute.py
 fi
