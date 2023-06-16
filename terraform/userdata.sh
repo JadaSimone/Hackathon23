@@ -8,8 +8,9 @@ aws s3 cp ${s3_bucket_path}
             
 . /opt/hackathon/env.sh
 svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
-chmod +x /opt/hackathon/ec2_scripts/start.sh
-chmod +x /opt/hackathon/ec2_scripts/stop.sh
+mv /opt/hackathon/ec2_scripts/* /opt/hackathon/
+chmod +x /opt/hackathon/start.sh
+chmod +x /opt/hackathon/stop.sh
 input_file=https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/examples/counter/input.json # TODO : pass this in from terraform. don't hard code
 curl --url $input_file > input.json
 
