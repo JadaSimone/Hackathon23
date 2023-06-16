@@ -7,20 +7,18 @@ import boto3
 import os
 import glob
 
-TERRAFORM_VERSION = '0.8.5'
-# Download URL for Terraform
-TERRAFORM_DOWNLOAD_URL = (
-'https://releases.hashicorp.com/terraform/%s/terraform_%s_linux_amd64.zip'
-% (TERRAFORM_VERSION, TERRAFORM_VERSION))
+TERRAFORM_VERSION      = '0.8.5'
+TERRAFORM_DOWNLOAD_URL = ('https://releases.hashicorp.com/terraform/%s/terraform_%s_linux_amd64.zip' % (TERRAFORM_VERSION, TERRAFORM_VERSION))
 
 # Paths where Terraform should be installed
-TERRAFORM_DIR = os.path.join('/tmp', 'terraform_%s' % TERRAFORM_VERSION)
+TERRAFORM_DIR  = os.path.join('/tmp', 'terraform_%s' % TERRAFORM_VERSION)
 TERRAFORM_PATH = os.path.join(TERRAFORM_DIR, 'terraform')
 
-GIT_REPO = "https://github.com/JadaSimone/Hackathon23.git"
+GIT_REPO     = "https://github.com/JadaSimone/Hackathon23.git"
 CLONE_TO_DIR = "/tmp/xmarksspot"
 
 def lambda_handler(event, context):
+    # triggered by s3 put into /inputs/ directory
     for record in event['Records']: # loop so we can have a multiple kick off in one upload
         bucket = record['s3']['bucket']['name']
         obj_name = record['s3']['object']['key']
