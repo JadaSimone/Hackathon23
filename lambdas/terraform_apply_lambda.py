@@ -16,10 +16,12 @@ TERRAFORM_DOWNLOAD_URL = (
 # Paths where Terraform should be installed
 TERRAFORM_DIR = os.path.join('/tmp', 'terraform_%s' % TERRAFORM_VERSION)
 TERRAFORM_PATH = os.path.join(TERRAFORM_DIR, 'terraform')
-    
+
+GITHUB_REPO = f"https://github.com/JadaSimone/Hackathon23.git"
+CLONE_LOCATION = '/tmp/xmarksspot'
+
 def lambda_handler(event, context):
-    clone('xmarksspot')
-    
+    clone(GITHUB_REPO)
     install_terraform()
     apply_terraform_plan()
     
@@ -57,33 +59,27 @@ def install_terraform():
     #   '-o' = overwrite existing files without prompting
     #   '-d' = output directory
     check_call(['unzip', '-o', '/tmp/terraform.zip', '-d', TERRAFORM_DIR])
-
     check_call([TERRAFORM_PATH, '--version'])
 
 def apply_terraform_plan():
-    os.chdir('/tmp/xmarksspot')
+    os.chdir(CLONE_LOCATION)
     #os.system('terraform plan'))
     check_call([TERRAFORM_PATH, '--version'])
     check_call([TERRAFORM_PATH, 'init','-input=false'])
-    check_call([TERRAFORM_PATH, 'apply', '/tmp/xmarksspot'])
+    check_call([TERRAFORM_PATH, 'apply', CLONE_LOCATION])
     # check_call(['terraform', 'apply', '--approve'])
 
-def clone(repoName):
- 
-    #from git.repo.base import Repo
-    #localDir=f'/tmp/{repoName}'
-    localDir = '/tmp/xmarksspot'
+def clone(repoUrl):
     print('empty the directory')
-    files = glob.glob(localDir)
+    files = glob.glob(CLONE_LOCATION)
     for f in files:
         os.remove(f)
     try:
         shutil.rmtree(localDir)
     except:
         pass
-    repoUrl = f"https://github.com/JadaSimone/Hackathon23.git"
     print('cloning repo')
-    check_call(['git', 'clone', repoUrl, localDir])
-    #localRepo = Repo.clone_from(repoUrl, localDir)
+    check_call(['git', 'clone', repoUrl, CLONE_LOCATION])
+    #localRepo = Repo.clone_from(repoUrl, CLONE_LOCATION)
     print(f'Cloned repo: {repoName}')
     
