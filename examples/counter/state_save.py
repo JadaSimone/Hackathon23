@@ -1,4 +1,3 @@
-def state_save(i):
-    file = open("../spot_state.txt", "w")
-    file.write(str(i))
-  
+def save(i):
+    with open("../spot_state.txt", "w") as file:
+        file.write(str(i))
