@@ -22,3 +22,4 @@ if [ -f "state.txt" ]; then
 else
     python3 compute.py
 fi
+python3 teardown.py
