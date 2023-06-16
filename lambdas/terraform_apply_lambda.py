@@ -64,7 +64,7 @@ def install_terraform(path):
     #   '-d' = output directory
     check_call(['unzip', '-o', '/tmp/terraform.zip', '-d', TERRAFORM_DIR])
 
-    check_call([path, '--version'])
+    check_call([path, '--version']) # TODO: having issues here. terraform isn't returning any version
 
 def apply_terraform_plan(s3_input_path):
     # TODO: pass the api_input.json s3 path to be installed on ec2 instance startup. We will want to hand the s3_input_path to Terraform as a variable, and Terraform EC2 UserData does an "s3 cp" to get the file into /opt/hackathon/
