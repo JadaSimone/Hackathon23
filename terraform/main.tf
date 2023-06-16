@@ -25,6 +25,8 @@ resource "aws_instance" "ec2_instance" {
     user_data = << EOF
     		#! /bin/bash
             yum -y install svn git
+            pip install boto3
+
             mkdir /opt/hackathon/
             cd /opt/hackathon/
             echo "REQUEST_ID=${var.request_id}" | sudo tee -a /opt/hackathon/env.sh
