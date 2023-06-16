@@ -1,0 +1,1 @@
+- call terraform_destroy_lambda from ec2 instance when compute has finished to shut everything down cleanly
