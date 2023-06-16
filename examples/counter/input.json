@@ -1,9 +1,10 @@
 {
-        "compute": "https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/counter.py",
+        "compute": "https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/examples/counter/counter.py",
         "requirements": ["python"],
         "state_store": {
-                                        "location": "s3://x-on-the-spot/state.txt",
-                                        "type":  "s3"
-                                        },
-        "state_measure":"https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/state_evaluation.py"
+                "location": "s3://x-on-the-spot/state.txt",
+                "type":  "s3"
+        },
+        "state_save":"https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/examples/counter/state_save.py",
+        "state_measure":"https://raw.githubusercontent.com/JadaSimone/Hackathon23/main/examples/counter/state_evaluation.py"
 }
