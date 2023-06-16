@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "stopping compute."
 state_measure=$(jq .state_measure api_input.json | tr -d "\"")
 s3_state_upload=$(jq .state_store.location api_input.json | tr -d "\"")
 
