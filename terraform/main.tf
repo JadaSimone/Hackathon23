@@ -27,9 +27,10 @@ resource "aws_instance" "ec2_instance" {
     		#! /bin/bash
             yum -y install svn git
             pip3 install boto3
-
+            
             mkdir /opt/hackathon/
             cd /opt/hackathon/
+            aws s3 cp ${s3_bucket_path}
             echo "REQUEST_ID=${var.request_id}" | sudo tee -a /opt/hackathon/env.sh
             
             . /opt/hackathon/env.sh
