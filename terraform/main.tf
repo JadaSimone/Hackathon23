@@ -24,7 +24,7 @@ resource "aws_instance" "ec2_instance" {
     }
     user_data = << EOF
     		#! /bin/bash
-            yum -y install svn
+            yum -y install svn git
             mkdir /opt/hackathon/
             cd /opt/hackathon/
             svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
