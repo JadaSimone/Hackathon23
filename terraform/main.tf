@@ -19,11 +19,16 @@ resource "aws_instance" "ec2_instance" {
     iam_instance_profile = "${var.iam_role}"
     associate_public_ip_address = true
     vpc_security_group_ids = ["sg-08bf3b80aeb1612be"]
-
     tags = {
-
         "Name": "terraform ec2 test"
     }
+    user_data = << EOF
+    		#! /bin/bash
+            yum -y install svn
+            mkdir /opt/hackathon/
+            cd /opt/hackathon/
+            svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
+    	EOF
 } 
 
 data "aws_iam_policy_document" "lambda_assume_role_policy"{
