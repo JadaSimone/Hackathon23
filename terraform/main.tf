@@ -70,13 +70,13 @@ data "archive_file" "python_lambda_package" {
 }
 
  resource "aws_lambda_function" "test_lambda_function" {
-         function_name = "lambdaTest"
+         function_name = "stop_compute_lambda"
          filename      = "nametest.zip"
          source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
          # role          = "arn:aws:iam::914058368716:role/service-role/x_on_the_spot_retry-role-5q3wucrg"
          role = aws_iam_role.lambda_role.arn
          runtime       = "python3.10"
-         handler       = "lambda_function.lambda_handler"
+         handler       = "stop_compute_lambda.lambda_handler"
          timeout       = 10
  }
 
