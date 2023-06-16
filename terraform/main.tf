@@ -9,6 +9,7 @@ provider "aws" {
 #TODO : in ec2 instance userdata download everything in this repo under ec2_scripts to /opt/hackathon
 #TODO : Autoscaling group
 #TODO : cloudwatch event rule - used to trigger stop_compute_lambda see https://registry.terraform.io/providers/hashicorp/aws/3.6.0/docs/resources/cloudwatch_event_rule & CloudWatchEventRule in cloudformation here https://github.com/aws-deepracer-community/deepracer-on-the-spot/blob/main/spot-instance.yaml 
+#TODO : add lambda invoke IAM to ec2 role
 
 resource "aws_instance" "ec2_instance" {
     ami = "${var.ami_id}"
