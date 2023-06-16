@@ -24,12 +24,12 @@ def lambda_handler(event, context):
     for record in event['Records']: # loop so we can have a multiple kick off in one upload
         bucket = record['s3']['bucket']['name']
         obj_name = record['s3']['object']['key']
-        s3_input = "s3://{}/{}".format(bucket, obj_name)
+        s3_input_path = "s3://{}/{}".format(bucket, obj_name)
         print("new input: {}".format(s3_input))
     
         #clone(GIT_REPO)
         #install_terraform(TERRAFORM_PATH)
-        #apply_terraform_plan()
+        #apply_terraform_plan(s3_input_path)
         
 def check_call(args):
     """Wrapper for subprocess that checks if a process runs correctly,
@@ -68,7 +68,9 @@ def install_terraform(path):
 
     check_call([path, '--version'])
 
-def apply_terraform_plan():
+def apply_terraform_plan(s3_input_path):
+    # TODO: pass the api_input.json s3 path to be installed on ec2 instance startup. We will want to hand the s3_input_path to Terraform as a variable, and Terraform EC2 UserData does an "s3 cp" to get the file into /opt/hackathon/
+    # TODO: Terraform also needs to update UserData to get all the files in ec2_scripts dir onto EC2 in /opt/hackathon
     os.chdir(CLONE_TO_DIR + '/terraform')
     check_call([TERRAFORM_PATH, '--version'])
     check_call([TERRAFORM_PATH, 'init','-input=false'])
