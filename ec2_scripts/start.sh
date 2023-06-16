@@ -7,7 +7,7 @@ s3_state=$(jq .state_store.location input.json | tr -d "\"")
 # install the requirements
 for requirement in $requirements
 do
-    yum install $requirement
+    yum install $requirement # TODO: don't assume we are yum installing everything in requirements. We may just want to exec everything in requirements
 done
 
 # install what we need to compute
