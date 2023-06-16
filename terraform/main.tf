@@ -31,6 +31,7 @@ resource "aws_launch_configuration" "x_on_the_spot_template" {
   instance_type               = "${var.instance_type}"
   associate_public_ip_address = true
   spot_price    = "0.0087"
+  enable_monitoring = true
   user_data = filebase64("${path.module}/userdata.sh")
   lifecycle {
     create_before_destroy = true
