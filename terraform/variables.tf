@@ -5,10 +5,8 @@ variable "secret_key" {
         description = "Secret key to AWS console"
 }
 
-variable "request_id" "random" {
-  length           = 16
-  special          = true
-  override_special = "/@£$"
+variable "request_id" {
+  default = "random234323"
 }
 
 variable "instance_name" {
