@@ -1,3 +1,3 @@
 def save(i):
-    with open("../spot_state.txt", "w") as file:
+    with open("state.txt", "w") as file:
         file.write(str(i))
