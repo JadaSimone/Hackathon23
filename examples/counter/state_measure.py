@@ -1,5 +1,5 @@
 def get_state():
-    file = open("../spot_state.txt", "r")
+    file = open("state.txt", "r")
     current_state = file.read()
     return current_state
 
