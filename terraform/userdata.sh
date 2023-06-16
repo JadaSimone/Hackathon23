@@ -1,5 +1,5 @@
 #! /bin/bash
-yum -y install svn git
+yum -y install svn git jq
 pip3 install boto3
           
 mkdir /opt/hackathon/
