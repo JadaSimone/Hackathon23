@@ -4,9 +4,7 @@ pip3 install boto3
           
 mkdir /opt/hackathon/
 cd /opt/hackathon/
-aws s3 cp ${s3_bucket_path}
             
-. /opt/hackathon/env.sh
 svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
 mv /opt/hackathon/ec2_scripts/* /opt/hackathon/
 chmod +x /opt/hackathon/start.sh
