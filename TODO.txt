@@ -1,2 +1,6 @@
+- create terraform_destroy_lambda func
 - call terraform_destroy_lambda from ec2 instance when compute has finished to shut everything down cleanly
+- Autoscaling group in terraform
+- pass variables to terraform from lambda
+- download files in ec2_scripts to ec2 instance in UserData
 - add another example for bash/JS ?
