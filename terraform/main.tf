@@ -4,6 +4,12 @@ provider "aws" {
     region = "us-east-1"
 }
 
+#TODO : also create the AMI if we have time
+#TODO : create separate terraform file that creates the "terraform_apply_lambda". This one will be built by terraform_apply_lambda
+#TODO : in ec2 instance userdata download everything in this repo under ec2_scripts to /opt/hackathon
+#TODO : Autoscaling group
+#TODO : cloudwatch event rule - used to trigger stop_compute_lambda see https://registry.terraform.io/providers/hashicorp/aws/3.6.0/docs/resources/cloudwatch_event_rule & CloudWatchEventRule in cloudformation here https://github.com/aws-deepracer-community/deepracer-on-the-spot/blob/main/spot-instance.yaml 
+
 resource "aws_instance" "ec2_instance" {
     ami = "${var.ami_id}"
     count = "${var.number_of_instances}"
