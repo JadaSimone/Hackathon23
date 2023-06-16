@@ -44,9 +44,6 @@ resource "aws_autoscaling_group" "x_on_the_spot_asg" {
   name                 = "x_on_the_spot_instance"
   vpc_zone_identifier  = ["${var.subnet_id}"]
   launch_configuration = aws_launch_configuration.x_on_the_spot_template.name
-  tags = {
-        "Name": "spot ec2 compute"
-    }
 }
 
 # lambda 
