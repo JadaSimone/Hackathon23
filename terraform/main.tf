@@ -27,6 +27,9 @@ resource "aws_instance" "ec2_instance" {
             yum -y install svn git
             mkdir /opt/hackathon/
             cd /opt/hackathon/
+            echo "REQUEST_ID=${var.request_id}" | sudo tee -a /opt/hackathon/env.sh
+            
+            . /opt/hackathon/env.sh
             svn export https://github.com/JadaSimone/Hackathon23/trunk/ec2_scripts
             /opt/hackathon/ec2_scripts/start.sh
     	EOF
